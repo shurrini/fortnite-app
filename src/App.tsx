@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
+
+interface Item {
+  devName: string,
+}
 
 function App() {
+  const [items, setItems] = useState([])
+
+  useEffect( () => {
+    const fetchData = async () => {
+      try {
+        const response = await axios('https://fortnite-api.com/v2/shop/br');
+        const itemShopFeatured = response.data.data.featured.entries;
+        setItems(itemShopFeatured);
+        console.log(itemShopFeatured)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
+  }, [] )
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Fortnait shop</h1>      
+      <ul>
+        {items.map((item: Item) =>  <li>{item.devName}</li> )}
+      </ul>
     </div>
   );
 }
