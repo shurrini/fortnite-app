@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
+import bundlesBG from './images/bundles_background.webp';
+
 import {NavBar} from "./components/NavBar"
 import {Card} from "./components/Card"
 import { Hero } from './components/Hero';
@@ -45,7 +47,7 @@ function App() {
       try {
         const response = await axios('https://fortnite-api.com/v2/shop/br');
 
-        const heItem = response.data.data.featured.entries[0].items[0];
+        const heItem = response.data.data.featured.entries[4].items[0];
         const featured = response.data.data.featured.entries;
 
         const featuredBundles = featured.filter((entry: { bundle: Bundle; }) => entry.bundle !== null)
@@ -53,6 +55,7 @@ function App() {
         
         setNonBundles(featuredItems);
         setBundles(featuredBundles);
+
         setHeroItem(heItem);
 
         console.log("CONSOLE LOG HERE")
@@ -72,9 +75,15 @@ function App() {
 
       {/* HERO */}
       <Hero item={heroItem}/>
-      
-      <h2>Bundles</h2>  
-      <div className='cards'>
+    
+      <div className='bundles'>
+        <img src={bundlesBG} alt="Bundles background" />
+        <div className='bundles1'>BUNDLES</div>
+        <div className='bundles2'>BUNDLES</div>
+        <div className='bundles3'>BUNDLES</div>
+      </div>
+
+      {/* <div className='cards'>
         {bundles.map((bundle: Featured) =>  
           <>
             <div className = "card">
@@ -97,7 +106,7 @@ function App() {
         {nonBundles.map((nonBundle: Featured) =>
           <Card item={nonBundle.items[0]}/>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

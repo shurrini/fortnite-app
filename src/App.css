@@ -1,25 +1,100 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-.App {
-  font-family: "Luckiest Guy", sans-serif;
+body{
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif; 
 }
 
+/* HERO */
 .hero {
+  background-color: #141414;
   height: 100vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+}
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.rtriangle {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}
+
+.hero img {
+  position: absolute;
+  height: 100vh;
+  right: 0;
+  z-index: 2;
 }
 
 .hero-text {
-  color: black;
-  font-size: 50px;
+  height: 100%;
+  font-size: 27rem;
+  line-height: .9;
+  left: 20px;
+  top: 0px;
+}
+
+.fortnite {
+  position: absolute;
+  color: #A9A9A9;
+  z-index: 0;
+}
+
+.item {
+  position: absolute;
+  top: 250px;
+  z-index: 1;
+
+  color: #141414;        
+  text-shadow: -5px 5px 0 white,
+      5px 5px 0 white,
+      5px -5px 0 white,
+      -5px -5px 0 white;
+}
+
+.shop {
+  position: absolute;
+  color: #A9A9A9;
+  top: 500px;
+  z-index: 0;
+}
+
+/* BUNDLES */
+.bundles{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: .9;
+}
+
+.bundles img {
+  width: 100%;
+  height: auto;
+}
+
+.bundles1, .bundles2, .bundles3 {
+  position: absolute;
+  text-align: center;
+  color: white;
+  font-size: 27rem;
+}
+
+.bundles1 {
+  top: 10%;
+}
+
+.bundles2 {
+  top: 40%;
+  color: #141414;        
+  text-shadow: -5px 5px 0 white,
+      5px 5px 0 white,
+      5px -5px 0 white,
+      -5px -5px 0 white;
+}
+
+.bundles3 {
+  top: 70%;
 }
 
 .cards {
@@ -37,7 +112,7 @@
   position: relative;
   color: white;
   box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
-  background-color: black;
+  background: radial-gradient(circle at center, white, gray);
 
   img {
     position: absolute;
@@ -91,8 +166,4 @@
     opacity: 1;
   }
 
-}
-
-.material-symbols-outlined {
-  vertical-align: middle;
 }
