@@ -6,11 +6,13 @@ import bundlesBG from './images/bundles_background.webp';
 
 import {NavBar} from "./components/NavBar"
 import {Card} from "./components/Card"
+import { BundleCard } from './components/BundleCard';
 import { Hero } from './components/Hero';
 
 interface Featured {
   bundle: Bundle,
   devName: string,
+  finalPrice: Number,
   layout: {
     name: string,
     category: string,
@@ -47,7 +49,7 @@ function App() {
       try {
         const response = await axios('https://fortnite-api.com/v2/shop/br');
 
-        const heItem = response.data.data.featured.entries[4].items[0];
+        const heItem = response.data.data.featured.entries[1].items[0];
         const featured = response.data.data.featured.entries;
 
         const featuredBundles = featured.filter((entry: { bundle: Bundle; }) => entry.bundle !== null)
@@ -59,7 +61,7 @@ function App() {
         setHeroItem(heItem);
 
         console.log("CONSOLE LOG HERE")
-        console.log(heItem)
+        console.log(featuredBundles)
       } catch (error) {
         console.log(error);
       }
@@ -76,29 +78,19 @@ function App() {
       {/* HERO */}
       <Hero item={heroItem}/>
     
-      <div className='bundles'>
-        <img src={bundlesBG} alt="Bundles background" />
-        <div className='bundles1'>BUNDLES</div>
-        <div className='bundles2'>BUNDLES</div>
-        <div className='bundles3'>BUNDLES</div>
-      </div>
-
-      {/* <div className='cards'>
-        {bundles.map((bundle: Featured) =>  
-          <>
-            <div className = "card">
-              <img src={bundle.bundle.image} alt=""/>
-              <div className="card-content">
-                <h2>
-                  {bundle.bundle.name}
-                </h2>
-                <p>
-                  {bundle.bundle.info}
-                </p>
-              </div>
-            </div>
-          </>
-        )}
+      <div className="bundles-container">
+        <div className="bundle-cards">
+          {bundles.map((item: Featured) =>
+            <BundleCard item={item}/>
+          )}
+        </div>
+        
+        <div className='bundles'>
+          <img src={bundlesBG} alt="Bundles background" />
+          <div className='bundles1'>BUNDLES</div>
+          <div className='bundles2'>BUNDLES</div>
+          <div className='bundles3'>BUNDLES</div>
+        </div>
       </div>
       
       <h2>Items</h2>
@@ -106,7 +98,7 @@ function App() {
         {nonBundles.map((nonBundle: Featured) =>
           <Card item={nonBundle.items[0]}/>
         )}
-      </div> */}
+      </div>
     </div>
   );
 }

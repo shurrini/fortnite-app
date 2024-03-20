@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body{
   margin: 0;
   font-family: "Bebas Neue", sans-serif; 
+  overflow-x: hidden;
 }
 
 /* HERO */
@@ -65,12 +65,12 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: .9;
+  line-height: .9;  
 }
 
 .bundles img {
-  width: 100%;
-  height: auto;
+  width: 100vw;
+  height: 100%;
 }
 
 .bundles1, .bundles2, .bundles3 {
@@ -97,39 +97,133 @@ body{
   top: 70%;
 }
 
-.cards {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.bundles-container{
+  position: relative;
 }
 
-.card {
+.bundle-cards{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  justify-items: center;
+  align-items: center;
+}
+
+.bundle-card {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  z-index: 1;
   width: 24rem;
-  height: 36rem;
+  height: 50rem;
+
+  height: 50rem;
   border-radius: 10px;
   overflow: hidden;
-  cursor: pointer;
-  position: relative;
   color: white;
-  box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
-  background: radial-gradient(circle at center, white, gray);
+
+  background: linear-gradient(0deg, rgb(49, 31, 52) 0%, rgba(136, 0, 255, 0.5) 100%);
+  box-shadow: 0 7px 20px 5px #00000088;
+  backdrop-filter: blur(7px);
+  transition: .5s all;
 
   img {
     position: absolute;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    object-fit: cover;
+    width: auto;
+    height: 80%;
     opacity: 0.9;
-    transition: opacity .2s ease-out;
+    transition: all 1s ease-in-out;
   }
 
   h2 {
     position: absolute;
     inset: auto auto 30px 30px;
     margin: 0;
-    transition: inset .3s .3s ease-out;
+    font-size: 2rem;
+    font-weight: normal;
+    transition: all .4s ease-in-out;
+  }
+
+  p, a {
+    position: absolute;
+    opacity: 0;
+    transition: opacity .3s ease-out;
+  }
+  
+  p {
+    inset: auto auto 80px 30px;
+  }
+  
+  a {
+    inset: auto auto 40px 30px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover h2 {
+    inset: auto auto 25% 30px;
+    font-size: 3.5rem;
+  }
+  
+  &:hover p, &:hover a {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+  }
+  
+  &:hover img {
+    position: absolute;
+    opacity: 1;
+    height: 100%;
+  }
+}
+
+.cards {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  
+  justify-items: center;
+  align-items: center;
+}
+
+.card {
+  z-index: 1;
+  width: 24rem;
+  height: 30rem;
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff22;
+  background: linear-gradient(0deg, rgb(49, 31, 52) 0%, rgba(136, 0, 255, 0.5) 100%);
+  box-shadow: 0 7px 20px 5px #00000088;
+  backdrop-filter: blur(7px);
+  transition: .5s all;
+
+  img {
+    position: absolute;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    transition: all .7s ease-in-out;
+  }
+
+  h2 {
+    position: absolute;
+    inset: auto auto 30px 30px;
+    margin: 0;
+    transition: all .6s ease-in-out;
+    font-size: 2rem;
     font-weight: normal;
     text-transform: uppercase;
   }
@@ -152,8 +246,9 @@ body{
   }
   
   &:hover h2 {
-    inset: auto auto 220px 30px;
-    transition: inset .3s ease-out;
+    inset: auto auto 78% 30px;
+    font-size: 2.5rem;
+    transition: all .3s ease-in-out;
   }
   
   &:hover p, &:hover a {
@@ -162,8 +257,9 @@ body{
   }
   
   &:hover img {
-    transition: opacity .3s ease-in;
     opacity: 1;
+    width: 150%;
+    height: 150%;
   }
 
 }
