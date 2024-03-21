@@ -61,7 +61,7 @@ function App() {
         setHeroItem(heItem);
 
         console.log("CONSOLE LOG HERE")
-        console.log(featuredBundles)
+        console.log(featuredItems)
       } catch (error) {
         console.log(error);
       }
@@ -92,12 +92,13 @@ function App() {
           <div className='bundles3'>BUNDLES</div>
         </div>
       </div>
-      
-      <h2>Items</h2>
-      <div className='cards'>
-        {nonBundles.map((nonBundle: Featured) =>
-          <Card item={nonBundle.items[0]}/>
-        )}
+      <div className="cards-container">
+        <h2>Item Shop</h2>
+        <div className='cards'>
+          {nonBundles.map((nonBundle: Featured) =>
+            <Card item={nonBundle.items[0]}/>
+          )}
+        </div>
       </div>
     </div>
   );

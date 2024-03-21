@@ -14,8 +14,9 @@ interface CardProps {
 export function BundleCard( {item}: CardProps ){
     return (
         <div className = "bundle-card">
-            <img src={item.bundle.image} alt=""/>
-            <div className="bundle-card-content">
+            <img src={item.bundle.image} alt={item.bundle.name}/>
+            <div>
+                <div className="bcard-background"></div>
                 <h2>
                     {item.bundle.name}
                 </h2>
